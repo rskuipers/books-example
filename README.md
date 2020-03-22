@@ -18,6 +18,14 @@ Run tests using PHPUnit.
 $ docker-compose exec php vendor/bin/phpunit
 ```
 
+### Debugging
+
+You can enable XDebug with the following steps:
+
+1. `$ cp docker-compose.override.yml.dist docker-compose.override.yml`
+2. Change `ENABLE_XDEBUG` to `"true"`
+3. `docker-compose up --build`
+
 ### Tasks
 
 1. Add ISBN to Book

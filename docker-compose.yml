@@ -36,7 +36,7 @@ services:
     ports:
       - "23306:3306"
     volumes:
-      - iot-db-volume:/var/lib/postgresql/data
+      - books-db-volume:/var/lib/mysql
 
 volumes:
-  iot-db-volume:
+  books-db-volume:
