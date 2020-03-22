@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <a href="{{ path('books_add') }}">Add book</a>
-    <ul>
-        {% for book in books %}
-            <li>{{ book.title }}</li>
-        {% endfor %}
-    </ul>
+{% block content %}
+    <h2>List of books</h2>
+    {% if books.count == 0 %}
+        <p>No books in database</p>
+    {% else %}
+        <ul>
+            {% for book in books %}
+                <li><a href="{{ path('books_view', { id: book.id }) }}">{{ book.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{{ path('books_add') }}" class="btn btn-primary">Add book</a>
 {% endblock %}

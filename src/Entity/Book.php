@@ -59,7 +59,7 @@ final class Book
         return $this->author;
     }
 
-    public function setAuthor(string $author): void
+    public function setAuthor(string $author)
     {
         $this->author = $author;
     }
@@ -69,8 +69,24 @@ final class Book
         return $this->releaseDate;
     }
 
-    public function setReleaseDate(DateTimeImmutable $releaseDate): void
+    public function setReleaseDate(DateTimeImmutable $releaseDate)
     {
         $this->releaseDate = $releaseDate;
+    }
+
+    public function timeSinceRelease($time = null): string
+    {
+        if (!$time) {
+            $time = $this->releaseDate->getTimestamp();
+        }
+        $rcs = 1;
+        $cur_tm = time(); $dif = $cur_tm-$time;
+        $pds = array('second','minute','hour','day','week','month','year','decade');
+        $lngh = array(1,60,3600,86400,604800,2630880,31570560,315705600);
+        for($v = sizeof($lngh)-1; ($v >= 0)&&(($no = $dif/$lngh[$v])<=1); $v--); if($v < 0) $v = 0; $_tm = $cur_tm-($dif%$lngh[$v]);
+
+        $no = floor($no); if($no <> 1) $pds[$v] .='s'; $x=sprintf("%d %s ",$no,$pds[$v]);
+        if(($rcs == 1)&&($v >= 1)&&(($cur_tm-$_tm) > 0)) $x .= $this->timeSinceRelease($_tm);
+        return $x;
     }
 }

@@ -9,12 +9,24 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Ramsey\Uuid\UuidInterface;
 
 final class BookRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Book::class);
+    }
+
+    public function getById(UuidInterface $id): Book
+    {
+        $book = $this->find($id);
+
+        if (!$book instanceof Book) {
+            throw new \RuntimeException('Book not found: ' . $id);
+        }
+
+        return $book;
     }
 
     public function getAllBooks(): Collection

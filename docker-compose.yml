@@ -1,0 +1,42 @@
+version: "3.6"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: nginx
+    ports:
+      - "23080:80"
+    links:
+      - php
+    volumes:
+      - ./:/app
+      - ./dev/docker/nginx/development.conf:/etc/nginx/conf.d/default.conf
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: php-fpm-dev
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    links:
+      - db
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_USER: "symfony"
+      MYSQL_PASSWORD: "password"
+      MYSQL_DATABASE: "symfony"
+    ports:
+      - "23306:3306"
+    volumes:
+      - iot-db-volume:/var/lib/postgresql/data
+
+volumes:
+  iot-db-volume:

@@ -63,4 +63,16 @@ final class BookController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route(path="/view/{id}", name="books_view")
+     */
+    public function viewAction(string $id, Request $request): Response
+    {
+        $book = $this->bookRepository->getById(Uuid::fromString($id));
+
+        return $this->render('books/view.html.twig', [
+            'book' => $book,
+        ]);
+    }
 }

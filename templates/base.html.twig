@@ -3,10 +3,31 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div class="container">
+                <div class="jumbotron">
+                    <h1 class="display-4">Books</h1>
+                    <p class="lead">For all your book needs</p>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        {% block navigation %}
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link active" href="{{ path('books_list') }}">Books</a>
+                            </nav>
+                        {% endblock %}
+                    </div>
+
+                    <div class="col-8">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

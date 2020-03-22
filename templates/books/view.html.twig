@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>{{ book.title }}</h2>
+    <table class="table table-borderless">
+        <tbody>
+        <tr>
+            <th scope="row">Author</th>
+            <td>{{ book.author }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Release date</th>
+            <td>
+                {{ book.releaseDate | date('d-m-Y') }}<br>
+                {{ book.timeSinceRelease }} ago
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
