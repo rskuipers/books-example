@@ -11,7 +11,7 @@ use Ramsey\Uuid\UuidInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
-final class Book
+class Book
 {
     /**
      * @ORM\Id()
