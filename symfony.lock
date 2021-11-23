@@ -23,6 +23,9 @@
     "doctrine/dbal": {
         "version": "v2.10.1"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
         "recipe": {
@@ -75,6 +78,12 @@
     "doctrine/reflection": {
         "version": "v1.1.0"
     },
+    "doctrine/sql-formatter": {
+        "version": "1.1.2"
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.5"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -89,6 +98,9 @@
     },
     "myclabs/deep-copy": {
         "version": "1.9.5"
+    },
+    "nikic/php-parser": {
+        "version": "v4.13.1"
     },
     "ocramius/package-versions": {
         "version": "1.5.1"
@@ -176,11 +188,20 @@
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
     },
+    "sebastian/cli-parser": {
+        "version": "1.0.1"
+    },
+    "sebastian/code-unit": {
+        "version": "1.0.8"
+    },
     "sebastian/code-unit-reverse-lookup": {
         "version": "2.0.0"
     },
     "sebastian/comparator": {
         "version": "4.0.0"
+    },
+    "sebastian/complexity": {
+        "version": "2.0.2"
     },
     "sebastian/diff": {
         "version": "4.0.0"
@@ -193,6 +214,9 @@
     },
     "sebastian/global-state": {
         "version": "4.0.0"
+    },
+    "sebastian/lines-of-code": {
+        "version": "1.0.3"
     },
     "sebastian/object-enumerator": {
         "version": "4.0.0"
@@ -236,6 +260,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v5.0.4"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.5.0"
     },
     "symfony/doctrine-bridge": {
         "version": "v5.0.4"
@@ -311,20 +338,23 @@
     "symfony/options-resolver": {
         "version": "v5.0.4"
     },
-    "symfony/orm-pack": {
-        "version": "v1.0.7"
-    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.13.1"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.23.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.13.1"
     },
     "symfony/polyfill-php73": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.23.1"
     },
     "symfony/property-access": {
         "version": "v5.0.4"
@@ -368,9 +398,6 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
-    },
-    "symfony/twig-pack": {
-        "version": "v1.0.0"
     },
     "symfony/var-dumper": {
         "version": "v5.0.4"

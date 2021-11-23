@@ -21,6 +21,8 @@ services:
       target: php-fpm-dev
     env_file:
       - .env
+    extra_hosts:
+      - host.docker.internal:host-gateway
     volumes:
       - ./:/app
     links:

@@ -11,17 +11,12 @@ COPY dev/docker/php/development.ini $PHP_INI_DIR/conf.d/
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN set -eux; \
-    composer global require "hirak/prestissimo:^0.3" --prefer-dist --no-progress --no-suggest --classmap-authoritative; \
-    composer clear-cache
-
 WORKDIR /app
 
 COPY composer.json composer.lock symfony.lock ./
 
 RUN set -eux; \
-    composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress --no-suggest; \
+    composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress; \
     composer clear-cache
 
 COPY config config/
@@ -54,23 +49,13 @@ RUN set -eux; \
 
 FROM php-fpm-test AS php-fpm-dev
 
-ARG ENABLE_XDEBUG=false
-
 RUN set -eux; \
-    if [ "$ENABLE_XDEBUG" = "true" ]; then \
-        apk add --no-cache $PHPIZE_DEPS --virtual .build-deps; \
-        pecl install xdebug; \
-        docker-php-ext-enable xdebug; \
-        apk del .build-deps; \
-    fi;
+    apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
+    pecl install xdebug; \
+    apk del --no-network .build-deps; \
+    docker-php-ext-enable xdebug
 
-RUN set -eux; \
-    if [ "$ENABLE_XDEBUG" = "true" ]; then \
-        HOST_IP="$(/sbin/ip route|awk '/default/ { print $3 }')"; \
-        echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-        echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-        echo "xdebug.remote_host=${HOST_IP}" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-    fi;
+COPY dev/docker/php/xdebug.ini $PHP_INI_DIR/conf.d/
 
 #------------------------------------
 
