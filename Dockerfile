@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine3.10 AS php-fpm
+FROM php:8.1-fpm-alpine AS php-fpm
 
 RUN set -eux; \
     apk add --no-cache icu mysql-client acl make; \
@@ -9,7 +9,7 @@ RUN set -eux; \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY dev/docker/php/development.ini $PHP_INI_DIR/conf.d/
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 

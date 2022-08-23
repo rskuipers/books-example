@@ -5,7 +5,7 @@
 Make sure you have docker installed on your computer.
 
 ```shell script
-$ docker-compose up
+$ docker compose up
 ```
 
 Your application is now live at http://localhost:23080/
@@ -15,7 +15,7 @@ Your application is now live at http://localhost:23080/
 Run tests using PHPUnit.
 
 ```shell script
-$ docker-compose exec php vendor/bin/phpunit
+$ docker compose exec php vendor/bin/phpunit
 ```
 
 ### Tasks
