@@ -50,6 +50,7 @@ RUN set -eux; \
 FROM php-fpm-test AS php-fpm-dev
 
 RUN set -eux; \
+    apk add --no-cache linux-headers; \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
     pecl install xdebug; \
     apk del --no-network .build-deps; \
